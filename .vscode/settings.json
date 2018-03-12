@@ -1,0 +1,7 @@
+{
+  "editor.tabSize": 2,
+  "editor.wordWrap": "on",
+  "terminal.external.osxExec": "iTerm2.app",
+  "git.ignoreLimitWarning": true,
+  
+}
