@@ -4,36 +4,36 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const Info = (props) => (
-  <div>
-    <h1>Info</h1>
-    <p>The info is: {props.info}</p>
-  </div>
+	<div>
+		<h1>Info</h1>
+		<p>The info is: {props.info}</p>
+	</div>
 );
 
 const withAdminWarning = (WrappedComponent) => {
-  return (props) => (
-    <div>
-        {props.isAdmin && <p>This is private info. Please don't share</p>}
-      <WrappedComponent {...props} />
-    </div>
-  );
+	return (props) => (
+		<div>
+			{props.isAdmin && <p>This is private info. Please don't share</p>}
+			<WrappedComponent {...props} />
+		</div>
+	);
 };
 
 const requireAuthentication = (WrappedComponent) => {
-  return (props) => (
-    <div>
-    {props.isAuthenticated ? (
-      <div>
-        <p>You are logged in. Cool!</p>
-        <WrappedComponent {...props} />
-      </div>
-    ) : (
-      <p>Please log in to view the content</p>
-    )
+	return (props) => (
+		<div>
+			{props.isAuthenticated ? (
+				<div>
+					<p>You are logged in. Cool!</p>
+					<WrappedComponent {...props} />
+				</div>
+			) : (
+				<p>Please log in to view the content</p>
+			)
       
-  }
-    </div>
-  );
+			}
+		</div>
+	);
 };
 
 const AdminInfo = withAdminWarning(Info);
