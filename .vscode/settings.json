@@ -1,9 +1,0 @@
-{
-  "editor.tabSize": 2,
-  "editor.insertSpaces": false,
-  "editor.wordWrap": "on",
-  "editor.detectIndententation": "false",
-  "terminal.external.osxExec": "iTerm2.app",
-  "git.ignoreLimitWarning": true,
-  
-}

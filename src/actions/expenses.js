@@ -21,20 +21,27 @@ export const startAddExpense = (expenseData = {}) => {
 			.ref('expenses')
 			.push(expense)
 			.then(ref => {
-				dispatch(
-					addExpense({
-						id: ref.key,
-						...expense
-					})
-				);
+				dispatch(addExpense({ id: ref.key, ...expense })); 
 			});
 	};
 };
+
 // REMOVE_EXPENSE
-export const removeExpense = ({ id } = {}) => ({
+// from the store...
+export const removeExpense = ({ id } = {}) => ({ 
 	type: 'REMOVE_EXPENSE',
-	id
+	id 
 });
+// ...and from Firebase
+export const startRemoveExpense = ({ id } = {}) => {
+	return dispatch => {
+		return database
+			.ref(`expenses/${id}`)
+			.remove()
+			.then(() => { dispatch(removeExpense({ id })); })
+			.catch(error => {	console.error('error:', error); });
+	};
+};
 
 // EDIT_EXPENSE
 export const editExpense = (id, updates) => ({
@@ -63,6 +70,6 @@ export const startSetExpenses = () => {
 					});
 				});
 				dispatch(setExpenses(expenses));
-			})
+			});
 	};
 };
