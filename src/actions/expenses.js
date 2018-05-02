@@ -44,11 +44,22 @@ export const startRemoveExpense = ({ id } = {}) => {
 };
 
 // EDIT_EXPENSE
+// in the store...
 export const editExpense = (id, updates) => ({
 	type: 'EDIT_EXPENSE',
 	id,
 	updates
 });
+// ...and in Firebase
+export const startEditExpense = (id, updates) => {
+	return (dispatch) => {
+		return database
+			.ref(`expenses/${id}`)
+			.update(updates)
+			.then(() => {dispatch(editExpense(id, updates))})
+			.catch(error => { console.error('error: ', error)});
+	};
+};
 
 // SET_EXPENSES
 export const setExpenses = expenses => ({
